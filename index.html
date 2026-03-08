@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблоны</title>
+    <link href="Style.css" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="Script.js"></script>
+</head>
+<body>
+    
+
+    <nav class="leftbar d-f f-c a-c">
+        <div class="logo a-c">
+            <img src="icons/logo.png" class="logo-icon" alt="Logo" draggable="false">
+        </div>
+
+        <div class="b-lb-c d-f f-c a-c">
+            <button onclick="showMenu('menu1', this)" class="active">
+                <img src="icons/3.svg" class="shablon-menu-icon" alt="Unknown" draggable="false">
+            </button>
+
+            <button onclick="showMenu('menu2', this)">
+                <img src="icons/1.svg" class="shablon-menu-icon" alt="Unknown" draggable="false">
+            </button>
+
+            <button onclick="showMenu('menu3', this)">
+                <img src="icons/2.svg" class="shablon-menu-icon" alt="Unknown" draggable="false">
+            </button>
+        </div>
+    </nav>
+
+<div class="sidebar-wrapper active d-f" id="sidebar">
+    <button class="toggle-menu" id="toggleBtn">☰</button>
+<nav class="menu-container d-f a-c">
+    <div id="menu1" class="menu1 d-f f-c a-c">
+        <div class="info-logo-text a-c d-f f-r">
+            <img src="icons/min-chat.svg" class="info-logo" alt="info" draggable="false">
+            <p class="t-b">Шаблоны</p>
+        </div>
+
+        <div class="btn-menu d-f a-c f-c">
+            <button class="btn a-c d-f f-r" onclick="showPage('page1')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Шаблоны RU</p>
+                    <p class="text2 t-b">Шаблоны на русском</p>
+                </div>
+            </button>
+
+            <button class="btn a-c d-f f-r" onclick="showPage('page2')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Шаблоны EN</p>
+                    <p class="text2 t-b">Шаблоны на английском</p>
+                </div>
+            </button>
+
+            <div class="bord b-b-d d-f a-c"></div>
+
+            <button class="btn a-c d-f f-r" onclick="showPage('page3')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Редактор</p>
+                    <p class="text2 t-b">Кастомные шаблоны</p>
+                </div>
+            </button>
+        </div>
+    </div>
+
+
+    <div id="menu2" class="menu1 d-f f-c a-c">
+        <div class="info-logo-text a-c d-f f-r">
+            <img src="icons/min-chat.svg" class="info-logo" alt="info" draggable="false">
+            <p class="t-b">Предупреждения</p>
+        </div>
+
+        <div class="btn-menu d-f a-c f-c">
+            <button class="btn a-c d-f f-r" onclick="showPage('page4')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Преды RU</p>
+                    <p class="text2 t-b">Преды на русском</p>
+                </div>
+            </button>
+
+            <button class="btn a-c d-f f-r" onclick="showPage('page5')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Преды EN</p>
+                    <p class="text2 t-b">Преды на английском</p>
+                </div>
+            </button>
+        </div>
+    </div>
+
+
+    <div id="menu3" class="menu1 d-f f-c a-c">
+        <div class="info-logo-text a-c d-f f-r">
+            <img src="icons/min-chat.svg" class="info-logo" alt="info" draggable="false">
+            <p class="t-b">Проверки</p>
+        </div>
+
+        <div class="btn-menu d-f a-c f-c">
+            <button class="btn a-c d-f f-r" onclick="showPage('Page4')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Проверки RU</p>
+                    <p class="text2 t-b">Проверки на русском</p>
+                </div>
+            </button>
+
+            <button class="btn a-c d-f f-r" onclick="showPage('Page5')">
+                <div class="img a-c">
+                    <img src="icons/min-ticket.svg" class="menu-img" alt="Unknown" draggable="false">
+                </div>
+
+                <div class="btn-text d-f f-c">
+                    <p class="text1 t-b">Проверки EN</p>
+                    <p class="text2 t-b">Проверки на английском</p>
+                </div>
+            </button>
+        </div>
+    </div>
+</nav>
+
+</div>
+
+<main class="content-main d-f f-c">
+    <div class="content-center a-c d-f f-r"></div>
+
+    <section id="page1" class="page1 a-c d-f f-c">
+        <div class="pg-ru a-c d-f f-r">
+            <div class="text-card d-f f-c">
+                <p class="textt1 t-b">Актульные шаблоны</p>
+                <p class="textt2 t-b">Копируй!</p>
+            </div>
+
+            <div class="search d-f a-c">
+                <input type="search-text" id="searchInput" placeholder="Поиск..." onkeyup="filterPages()">
+            </div>
+        </div>
+
+        <div class="category a-c d-f f-r">
+
+            <div class="cat-text a-c d-f">
+                <p class="text-cat t-b">Категории</p>
+            </div>
+
+            <button class="c-btn a-c d-f" onclick="changeCategory('shab-obshee', this)">
+                <p class="c-text t-b">Общее</p>
+            </button>
+
+            <button class="c-btn a-c d-f" onclick="changeCategory('shab-razban', this)">
+                <p class="c-text t-b">Разбан</p>
+            </button>
+
+            <button class="c-btn a-c d-f" onclick="changeCategory('shab-player', this)">
+                <p class="c-text t-b">Жб на игрока</p>
+            </button>
+
+            <button class="c-btn a-c d-f" onclick="changeCategory()">
+                <p class="c-text t-b">nates</p>
+            </button>
+        </div>
+
+        <div class="shab1 a-c d-f f-c" id="shab1">
+
+            <button id="scrollToTop" class="btn-up a-c d-f">
+                <span class="arrow-up">↑</span>
+            </button>
+
+            <div class="shab-page-obshee d-f" id="shab-obshee">
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Игрок не отвечает</p>
+                    <p class="shab t-b">Уведомляем вас о том, что в случае отсутствия ответа либо какой-либо иной активности с вашей стороны в данном чате в течение ближайшего времени<br>администрация будет вынуждена закрыть текущее обращение без дальнейшего рассмотрения и возможности апелляции.</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Кто-то другой играл на STEAM аккаунте</p>
+                    <p class="shab t-b">Обращаем ваше внимание, что пользователь несет полную ответственность за все действия,<br> совершённые с использованием принадлежащей ему учётной записи, а также за обеспечение<br> безопасности своего компьютера и доступа.<br>
+Даже в случае, если действия, повлекшие нарушение правил проекта, были совершены третьими<br> лицами, использовавшими вашу учетную запись, данное обстоятельство не освобождает вас от<br> ответственности.<br><br>
+
+В связи с тем, что факт нарушения правил проекта CYBERSHOKE зафиксирован именно на данной<br> учетной записи, администрация не имеет возможности снять текущую блокировку.<br>
+Основанием для принятия соответствующих мер являются правила проекта CYBERSHOKE, с которыми<br> пользователь соглашается при регистрации и использовании сервиса:<br> https://cybershoke.net/learn/181.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку<br> или оно будет закрыто автоматически.<br> Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Просит ник админа</p>
+                    <p class="shab t-b">Администрация проекта не раскрывает информацию о конкретных сотрудниках или модераторах,<br> применивших меры наказания, в целях соблюдения внутренней политики конфиденциальности и<br> обеспечения безопасности представителей администрации.<br><br>
+
+При этом все санкции выносятся исключительно на основании действующих правил проекта и<br> зафиксированных нарушений. Личность администратора, принявшего решение, не влияет на<br> правомерность и обоснованность применённой меры наказания.<br>
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+                
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Почему нет чата поддержки на сайте</p>
+                    <p class="shab t-b">Здравствуйте. Виджет поддержки защищен системой cloudflare, айпи адреса которой могут<br> блокировать некоторые провайдеры. Также виджет может не отображаться из-за расширений<br> формата AD block/guard, которые также могут быть встроены в сам браузер.<br> Вы можете обратиться к нам на нашу почту: support@cybershoke.net</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Дальнейший диалог не приведет к разблокировке</p>
+                    <p class="shab t-b">Дальнейший диалог не приведёт к разблокировке аккаунта. Вынесенный вердикт является<br> окончательным и не подлежит обжалованию или дальнейшей апелляции. Данный чат будет<br> закрыт в течение нескольких минут, так как вы уже получили развёрнутый ответ на своё обращение.<br> Всего доброго!</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+                
+            </div>
+
+            <div class="shab-page-obshee" id="shab-razban">
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Приветствие</p>
+                    <p class="shab t-b">Доброго времени суток!<br> 
+Спасибо за обращение в поддержку CYBERSHOKE.<br><br>
+
+Нам потребуется некоторое время, чтобы проверить информацию и разобраться в ситуации.<br> 
+Пожалуйста, ожидайте — мы напишем в чат по итогам проверки.<br>
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Нужны steam-аккаунты</p>
+                    <p class="shab t-b">Для проведения проверки и объективного рассмотрения апелляции вам необходимо предоставить<br> ссылки на все Steam аккаунты, использованные вами когда-либо, включая аккаунты, используемые<br> в настоящий момент.</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Бан остается</p>
+                    <p class="shab t-b">Мы проверили информацию касательно вашей блокировки.<br><br>
+
+По итогам проверки мы не выявили ошибок со стороны модерации, блокировка выдана корректно и остаётся в силе.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Бан снят</p>
+                    <p class="shab t-b">Мы проверили информацию касательно вашей блокировки.<br><br> По итогам проверки нами было принято решение снять блокировку. <br>
+
+Приносим извинения за доставленные неудобства и потраченное время.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Давняя блокировка</p>
+                    <p class="shab t-b">Мы проверили информацию касательно вашей блокировки.<br><br>
+
+Увы, но давние блокировки мы не снимаем и не апеллируем. Вам остаётся только ожидать окончания блокировки.<br><br>
+
+Максимальный срок подачи апелляции для банов за использование запрещённого ПО составляет 7 дней.<br> В случае бана за отказ от проверки на читы у вас есть максимум 4 часа на подачу апелляции.<br> Правила проекта — https://cybershoke.net/ru/learn/181.<br><br>
+
+Дата разблокировки - xx.xx.xxxx.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Верная блокировка</p>
+                    <p class="shab t-b">Мы проверили информацию касательно вашей блокировки.<br><br>
+
+Мы не снимаем верно выданные баны, блокировка выдана корректно и остаётся в силе,<br> ожидайте окончания блокировки.<br><br>
+
+Дата разблокировки - xx.xx.xxxx.<br><br>
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+            </div>
+
+            <div class="shab-page-obshee" id="shab-player">
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Игрок наказан</p>
+                    <p class="shab t-b">Мы ознакомились с прикрепленными вами доказательствами нарушений.<br><br>
+По итогам проверки в отношении игрока была применена блокировка:<br><br>
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">У игрока нет нарушений</p>
+                    <p class="shab t-b">Мы ознакомились с прикрепленными вами доказательствами нарушений.<br><br>
+По итогам проверки мы не выявили никаких нарушений со стороны игрока.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Нет доказательств</p>
+                    <p class="shab t-b">Для рассмотрения жалоб, поданных через Discord, обязательным условием является наличие<br> доказательств нарушения. В качестве доказательств принимаются видеозаписи, скриншоты <br>или иные материалы, позволяющие однозначно установить факт нарушения правил проекта.<br> Загрузить доказательства можно на сервис https://dropmefiles.com/ и отправить ссылку в данный чат на загруженный файл.<br><br>
+
+В случае, если доказательства отсутствуют, мы, к сожалению, не можем рассмотреть жалобу и<br> принять какие-либо меры в рамках обращения через Discord.<br>
+Если у вас нет возможности записывать игровой процесс или фиксировать нарушения, рекомендуем<br> подавать жалобу непосредственно с сервера с помощью команд !ticket или !report.<br>
+В таком случае модератор сможет подключиться к серверу в режиме реального времени, проверить ситуацию и,<br> при подтверждении нарушения, оперативно принять необходимые меры в отношении игрока.<br><br>
+
+Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>
+Всего доброго!
+
+</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+
+                <div class="shab-grid a-c d-f">
+                    <div class="shab-text-menu a-c d-f f-c">
+                    <p class="shab-name t-b">Игрок не отвечает</p>
+                    <p class="shab t-b">Уведомляем вас о том, что в случае отсутствия ответа либо какой-либо иной активности с вашей стороны в данном чате в течение ближайшего времени<br>администрация будет вынуждена закрыть текущее обращение без дальнейшего рассмотрения и возможности апелляции.</p>
+                    </div>
+                    <button class="copy-btn a-c d-f" onclick="copyAndAnimate(this)">
+                        <p class="copy-text t-b">Копировать</p>
+                    </button>
+                    
+                    <button class="copy-btn a-c d-f" onclick="copyWithGaps(this)">
+                        <p class="copy-text t-b">Отступ</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page2" class="page1 a-c d-f f-c">
+        <div class="pg-en"></div>
+    </section>
+</main>
+
+
+</body>
+</html>
