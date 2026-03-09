@@ -608,4 +608,43 @@ body {
 
 
 
+/* Центрирование контейнера */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: transparent; /* Светлый, спокойный фон */
+    font-family: sans-serif;
+    width: 100%;
+}
+
+/* Анимация круга */
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #eeeeee;
+    border-top: 2px solid #333333; /* Акцентный цвет */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Текст под лоадером */
+.status-text {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #888888;
+    letter-spacing: 1px;
+    text-transform: lowercase; /* Нижний регистр для минимализма */
+}
+
+/* Логика вращения */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
 
