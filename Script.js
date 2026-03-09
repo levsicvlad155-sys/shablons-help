@@ -55,6 +55,17 @@ function showPage(pageId) {
         currentPage.style.opacity = '0';
     }
 
+
+const pageTitles = {
+    'page1': 'Шаблоны RU',
+    'page2': 'Шаблоны EN',
+    'page3': 'Редактор',
+    'page4': 'Предупреждения RU',
+    'page5': 'Предупреждения EN',
+    'page6': 'Проверки RU',
+    'page7': 'Проверки EN',
+};
+
     // Задержка 150мс (соответствует твоему transition в CSS)
     setTimeout(() => {
         // 2. Убираем класс active у всех секций в main
@@ -67,7 +78,8 @@ function showPage(pageId) {
         if (targetPage) {
             targetPage.style.display = 'flex'; // Возвращаем display
             targetPage.classList.add('active');
-            
+
+            document.title = pageTitles[targetId] || 'мой проект';
             // Маленький хак для запуска анимации opacity после display: flex
             setTimeout(() => { 
                 targetPage.style.opacity = '1'; 
