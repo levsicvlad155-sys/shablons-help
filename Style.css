@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'DIN Pro';
+    src: url('fonts/DINPro.woff2') format('woff2'),
+         url('fonts/DINPro.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DIN Pro';
+    src: url('fonts/DINPro-Bold.woff') format('woff2'),
+         url('fonts/DINPro-Black.woff2') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
 
 
 body {
@@ -6,7 +23,8 @@ body {
     margin: 0;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DIN Pro', sans-serif;
+    -ms-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +40,7 @@ body {
 }
 
 .t-b {
-    font-family: 'Barlow', sans-serif;
+    font-family: 'DIN Pro', sans-serif;
 }
 
 .d-f {
@@ -189,7 +207,7 @@ body {
     width: 250px;
     margin-top: 20px;
     justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
 }
 
 .btn-menu button {
@@ -227,7 +245,7 @@ body {
 }
 
 .menu-img {
-    width: 20px;
+    width: 17px;
 }
 
 .btn-text {
@@ -241,14 +259,17 @@ body {
 .text1 {
     font-size: 15px;
     color: var(--t-c);
-    font-weight: 600;
+    font-weight: 700;
+    font-family: 'DIN Pro', sans-serif;
 }
 
 .text2 {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--t-c);
     transition: 0.15s;
-    font-weight: 600;
+    font-weight: 500;
+    font-family: 'DIN Pro', sans-serif;
+    opacity: 80%;
 }
 
 .btn-text p {
@@ -322,6 +343,7 @@ body {
     font-size: 13px;
     color: var(--t-c);
     font-weight: 700;
+    opacity: 80%;
 }
 
 .category {
@@ -474,8 +496,8 @@ body {
 .shab {
     color: var(--t-c);
     margin: 0 auto 30px 50px;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
+    font-family: 'DIN Pro', sans-serif;
+    font-weight: 500 !important;
 }
 
 .shab-name {
@@ -483,8 +505,8 @@ body {
     font-size: 25px;
     margin-left: 50px;
     margin-top: 10px;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 500;
+    font-family: 'DIN Pro', sans-serif;
+    font-weight: 400 !important;
 }
 
 .b-b {
@@ -616,7 +638,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: transparent; /* Светлый, спокойный фон */
-    font-family: sans-serif;
+    font-family: 'DIN Pro', sans-serif;
     width: 100%;
 }
 

@@ -371,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('active');
         
         // Меняем иконку при клике
-        toggleBtn.innerHTML = sidebar.classList.contains('active') ? '✕' : '☰';
+        toggleBtn.innerHTML = sidebar.classList.contains('active') ? '❮' : '❯';
     });
 });
 
@@ -383,14 +383,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Установи порог: если ширина экрана меньше этого значения (из-за зума или ресайза), 
     // меню схлопнется. Если больше — откроется.
-    const breakpoint = 1300; 
+    const breakpoint = 1800; 
 
     function autoToggleMenu() {
         if (window.innerWidth < breakpoint) {
             // Если места мало — закрываем
             if (sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');
-                if (toggleBtn) toggleBtn.innerHTML = '☰';
+                if (toggleBtn) toggleBtn.innerHTML = '❮';
                 
                 // Если ты используешь JS для смещения кнопки, добавь строку ниже:
                 // toggleBtn.style.left = "80px"; 
@@ -399,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Если места достаточно — открываем обратно
             if (!sidebar.classList.contains('active')) {
                 sidebar.classList.add('active');
-                if (toggleBtn) toggleBtn.innerHTML = '✕';
+                if (toggleBtn) toggleBtn.innerHTML = '❯';
                 
                 // Если ты используешь JS для смещения кнопки, добавь строку ниже:
                 // toggleBtn.style.left = "400px";
