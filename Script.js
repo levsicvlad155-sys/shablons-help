@@ -301,6 +301,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const containerEN = document.getElementById('shab2'); 
     const btnUpEN = document.getElementById('scrollToTopEN');
 
+    const constructorArea = document.getElementById('constructorArea');
+if (constructorArea) {
+    // 1. При загрузке достаем текст из памяти
+    const saved = localStorage.getItem('constructorDraft');
+    if (saved) {
+        constructorArea.value = saved;
+    }
+
+    // 2. Если ты печатаешь в поле руками — тоже сохраняем
+    constructorArea.addEventListener('input', () => {
+        localStorage.setItem('constructorDraft', constructorArea.value);
+    });
+}
+
     if (containerEN && btnUpEN) {
         // Следим за скроллом внутри контейнера shab2
         containerEN.addEventListener('scroll', () => {
@@ -563,6 +577,9 @@ function addToConstructor(btn) {
     // Анимация кнопки (опционально, используем твой класс)
     btn.classList.add('active-click');
     setTimeout(() => btn.classList.remove('active-click'), 300);
+
+    // Добавь эту строку в самый конец функции addToConstructor
+    localStorage.setItem('constructorDraft', area.value);
 }
 
 // 2. Копирование результата
