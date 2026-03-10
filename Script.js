@@ -552,6 +552,36 @@ function filterPagesEN() {
 
 
 
+// 1. Добавление текста в поле
+function addToConstructor(btn) {
+    const area = document.getElementById('constructorArea');
+    const textToAdd = btn.getAttribute('data-text');
+    
+    // Добавляем текст к текущему содержимому
+    area.value += textToAdd;
+    
+    // Анимация кнопки (опционально, используем твой класс)
+    btn.classList.add('active-click');
+    setTimeout(() => btn.classList.remove('active-click'), 300);
+}
+
+// 2. Копирование результата
+function copyConstructorText() {
+    const area = document.getElementById('constructorArea');
+    if (area.value.trim() === "") return; // Если пусто — не копируем
+
+    navigator.clipboard.writeText(area.value).then(() => {
+        
+    });
+}
+
+// 3. Очистка поля
+function clearConstructor() {
+    document.getElementById('constructorArea').value = "";
+}
+
+
+
 
 
 

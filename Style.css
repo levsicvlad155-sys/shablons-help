@@ -684,5 +684,96 @@ body {
 }
 
 
+.constructor-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: var(--shab-card);
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.constructor-buttons {
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    background: transparent;
+    gap: 10px;
+}
+
+#constructorArea {
+    display: flex;
+    width: 95%;
+    height: 30%;
+    margin: 20px;
+    padding: 15px;
+    background: var(--m-c);
+    color: white;
+    border-radius: 8px;
+    font-family: 'DIN Pro', sans-serif;
+    font-size: 16px;
+    transition: border 0.3s;
+    border: none;
+    resize: vertical;
+    outline: none;
+}
+
+#constructorArea::-webkit-scrollbar {
+    width: 10px;
+}
+
+#constructorArea::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+#constructorArea::-webkit-scrollbar-thumb {
+    background: var(--l-c);
+    border-radius: 5px;
+}
+
+#constructorArea::-webkit-scrollbar-thumb:hover {
+    cursor: auto;
+}
+
+#constructorArea:focus {
+    outline: none;
+}
+
+.constructor-controls {
+    flex-direction: row;
+    display: flex;
+    position: relative;
+    margin-left: 20px;
+    margin-top: 20px;
+    background: transparent;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.c1-btn {
+    display: flex;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 8px;
+    border-color: var(--b-c);
+    color: var(--b-c);
+    cursor: pointer;
+}
+
+.ntb {
+    background: var(--m-c);
+}
+
+
+
+
+
 
 
