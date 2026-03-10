@@ -575,9 +575,10 @@ function addToConstructor(btn) {
     area.value += textToAdd;
     
     // Анимация кнопки (опционально, используем твой класс)
-    btn.classList.add('active-click');
-    setTimeout(() => btn.classList.remove('active-click'), 300);
-
+    navigator.clipboard.writeText(textToAdd).then(() => {
+        btn.classList.add('active-click');
+        setTimeout(() => btn.classList.remove('active-click'), 300);
+    });
     // Добавь эту строку в самый конец функции addToConstructor
     localStorage.setItem('constructorDraft', area.value);
 }
