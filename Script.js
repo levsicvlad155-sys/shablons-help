@@ -63,7 +63,7 @@ const pageTitles = {
     'page4': 'Предупреждения RU',
     'page5': 'Предупреждения EN',
     'page6': 'Проверки RU',
-    'page7': 'Проверки EN',
+    'page7': 'Проверки EN'
 };
 
     // Задержка 150мс (соответствует твоему transition в CSS)
@@ -204,36 +204,72 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Получаем ID последней открытой страницы из памяти
-    const activeShabId = localStorage.getItem('activeShab');
-    
-    if (activeShabId) {
-        // 2. Ищем ту самую страницу в верстке
-        const targetPage = document.getElementById(activeShabId);
-        
-        if (targetPage) {
-            // 3. Сначала скрываем все страницы (на всякий случай)
-            document.querySelectorAll('.shab-page-obshee').forEach(el => {
-                el.style.display = 'none';
-                el.classList.remove('active');
-            });
 
-            // 4. Показываем сохраненную страницу
-            targetPage.style.display = 'block';
-            targetPage.classList.add('active');
 
-            // 5. Ищем кнопку, у которой onclick совпадает с этим ID, и подсвечиваем её
-            const btn = document.querySelector(`.c-btn[onclick*="${activeShabId}"]`);
-            if (btn) {
-                btn.classList.add('active');
-            }
-        }
-    } else {
-        // Если в памяти ничего нет, подсвечиваем первую кнопку "Общее" по умолчанию
-        const defaultBtn = document.querySelector('.c-btn');
-        if (defaultBtn) defaultBtn.classList.add('active');
+// --- Функция для Page 2 (EN) ---
+function changeCategoryEN(targetId, btn) {
+    const parent = document.getElementById('shab2'); // Ссылка на ВТОРОЙ контейнер
+    const target = document.getElementById(targetId);
+    const current = parent.querySelector('.active');
+
+    if (btn) {
+        const navButtons = btn.parentElement.querySelectorAll('.c-btn');
+        navButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
     }
+
+    if (!target || target === current) return;
+    if (current) current.classList.remove('active');
+
+    setTimeout(() => {
+        parent.querySelectorAll('.shab-page-obshee').forEach(el => {
+            el.style.display = 'none';
+        });
+        target.style.display = 'block';
+        parent.scrollTop = 0;
+        setTimeout(() => {
+            target.classList.add('active');
+            localStorage.setItem('activeShabEN', targetId); // Другой ключ памяти!
+        }, 20);
+    }, 150);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Универсальная функция настройки контента для любой страницы
+    function initPageContent(pageId, storageKey) {
+        const page = document.getElementById(pageId);
+        if (!page) return;
+
+        // Ищем контейнер со списками внутри этой страницы
+        const contentContainer = page.querySelector('.shab1');
+        const allLists = contentContainer.querySelectorAll('.shab-page-obshee');
+        
+        // Получаем сохраненный ID или берем первый доступный список
+        const savedId = localStorage.getItem(storageKey);
+        const targetId = savedId && page.querySelector(`#${savedId}`) ? savedId : allLists[0]?.id;
+
+        // Показываем только нужный список внутри этой страницы
+        allLists.forEach(list => {
+            if (list.id === targetId) {
+                list.style.display = 'block';
+                list.classList.add('active');
+            } else {
+                list.style.display = 'none';
+                list.classList.remove('active');
+            }
+        });
+
+        // Подсвечиваем кнопку категории только внутри этой страницы
+        const activeBtn = page.querySelector(`.c-btn[onclick*="${targetId}"]`);
+        if (activeBtn) {
+            page.querySelectorAll('.c-btn').forEach(btn => btn.classList.remove('active'));
+            activeBtn.classList.add('active');
+        }
+    }
+
+    // Запускаем для каждой страницы отдельно с их ключами памяти
+    initPageContent('page1', 'activeShab');   // Для RU
+    initPageContent('page2', 'activeShabEN'); // Для EN
 });
 
 
@@ -259,6 +295,30 @@ document.addEventListener("DOMContentLoaded", () => {
             behavior: 'smooth' // Делает прокрутку плавной
         });
     };
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const containerEN = document.getElementById('shab2'); 
+    const btnUpEN = document.getElementById('scrollToTopEN');
+
+    if (containerEN && btnUpEN) {
+        // Следим за скроллом внутри контейнера shab2
+        containerEN.addEventListener('scroll', () => {
+            if (containerEN.scrollTop > 100) {
+                btnUpEN.classList.add('show');
+            } else {
+                btnUpEN.classList.remove('show');
+            }
+        });
+
+        // Плавный скролл вверх
+        btnUpEN.addEventListener('click', () => {
+            containerEN.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
 
 
@@ -293,6 +353,10 @@ function filterPages() {
         });
         return;
     }
+
+    
+
+    
 
     // 2. ЛОГИКА АКТИВНОГО ПОИСКА
     grids.forEach(grid => {
@@ -425,6 +489,75 @@ document.addEventListener('DOMContentLoaded', () => {
     // Вызываем один раз при загрузке страницы, чтобы сразу проверить масштаб
     autoToggleMenu();
 });
+
+
+function filterPagesEN() {
+    // 1. Берем значение именно из АНГЛИЙСКОГО инпута
+    const input = document.getElementById('searchInputEN');
+    if (!input) return; // Защита от ошибок
+    
+    const filter = input.value.trim().toLowerCase();
+    
+    // 2. Ищем карточки ТОЛЬКО внутри контейнера второй страницы
+    const container = document.getElementById('shab2');
+    if (!container) return;
+    
+    const grids = container.querySelectorAll('.shab-grid');
+
+    // ЛОГИКА ОЧИСТКИ (если в поиске меньше 3 символов)
+    if (filter.length < 3) {
+        grids.forEach(grid => {
+            grid.style.display = "flex"; 
+            setTimeout(() => { grid.classList.remove('hidden-grid'); }, 10);
+            
+            const elements = grid.querySelectorAll('.shab-name, .shab');
+            elements.forEach(el => {
+                el.innerHTML = el.innerHTML.replace(/<span class="highlight">|<\/span>/g, "");
+            });
+        });
+        return;
+    }
+
+    // ЛОГИКА ПОИСКА
+    grids.forEach(grid => {
+        const elements = grid.querySelectorAll('.shab-name, .shab');
+        let hasMatch = false;
+
+        elements.forEach(el => {
+            const textContent = el.innerText.toLowerCase();
+
+            if (textContent.includes(filter)) {
+                hasMatch = true;
+                // Подсветка
+                const originalHTML = el.innerHTML.replace(/<span class="highlight">|<\/span>/g, "");
+                const regex = new RegExp(`(${filter})`, 'gi');
+                el.innerHTML = originalHTML.replace(regex, '<span class="highlight">$1</span>');
+            }
+        });
+
+        // Плавное скрытие/появление карточки
+        if (hasMatch) {
+            grid.style.display = "flex";
+            setTimeout(() => grid.classList.remove('hidden-grid'), 10);
+        } else {
+            grid.classList.add('hidden-grid');
+            setTimeout(() => {
+                if (grid.classList.contains('hidden-grid')) {
+                    grid.style.display = "none";
+                }
+            }, 1000); // 1 секунда (согласно твоему CSS)
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
 
 
 
