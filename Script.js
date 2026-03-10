@@ -595,6 +595,9 @@ function copyConstructorText() {
 // 3. Очистка поля
 function clearConstructor() {
     document.getElementById('constructorArea').value = "";
+
+    // Добавь это внутрь функции, которая очищает поле
+    localStorage.removeItem('constructorDraft');
 }
 
 
