@@ -271,5 +271,54 @@ document.addEventListener('click', (event) => {
 
 
 
+// --- БЛОК ПОИСКА И ОЧИСТКИ ---
+const searchInput = document.getElementById('search-input');
+const clearSearchBtn = document.getElementById('clear-search');
+
+if (searchInput) {
+    // Функция самой фильтрации
+    const filterCards = () => {
+        const query = searchInput.value.toLowerCase().trim();
+        const cards = document.querySelectorAll('.card-grid');
+        
+        // Показываем/скрываем кнопку очистки
+        if (clearSearchBtn) {
+            clearSearchBtn.style.display = query.length > 0 ? 'block' : 'none';
+        }
+
+        cards.forEach(card => {
+            // Если в поиске меньше 3 символов — показываем всё
+            if (query.length < 3) {
+                card.style.display = 'flex';
+                return;
+            }
+
+            const name = card.querySelector('.shab-name').innerText.toLowerCase();
+            const text = card.querySelector('.shab-text').innerText.toLowerCase();
+
+            if (name.includes(query) || text.includes(query)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    };
+
+    // Слушаем ввод текста
+    searchInput.addEventListener('input', filterCards);
+
+    // Логика кнопки очистки
+    if (clearSearchBtn) {
+        clearSearchBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            filterCards(); // Сбросит видимость всех карточек
+            searchInput.focus();
+        });
+    }
+}
+
+
+
+
 
 

@@ -58,7 +58,7 @@
                 <img src="icons/min-chat.svg" alt=" " class="img" draggable="false">
                 <p id="data-text">123</p>
             </div>
-            <a href="#page3" class="menu-btn">
+            <a href="#page4" class="menu-btn">
                 <div id="menu-icon">
                     <img src="icons/1.svg" class="menu-img" alt=" " draggable="false">
                 </div>
@@ -67,7 +67,7 @@
                     <p class="textt2">321</p>
                 </div>
             </a>
-            <a href="#page4" class="menu-btn">
+            <a href="#page5" class="menu-btn">
                 <div id="menu-icon">
                     <img src="icons/1.svg" class="menu-img" alt=" " draggable="false">
                 </div>
@@ -82,7 +82,7 @@
                 <img src="icons/min-chat.svg" alt=" " class="img" draggable="false">
                 <p id="data-text">123</p>
             </div>
-            <a href="#page5" class="menu-btn active">
+            <a href="#page6" class="menu-btn active">
                 <div id="menu-icon">
                     <img src="icons/1.svg" class="menu-img" alt=" " draggable="false">
                 </div>
@@ -91,7 +91,7 @@
                     <p class="textt2">321</p>
                 </div>
             </a>
-            <a href="#page6" class="menu-btn">
+            <a href="#page7" class="menu-btn">
                 <div id="menu-icon">
                     <img src="icons/1.svg" class="menu-img" alt=" " draggable="false">
                 </div>
@@ -113,7 +113,10 @@
                 <p class="page-text">Шаблоны RU</p>
             </div>
             <div id="search-ru">
-                <input type="text" placeholder="Поиск по разделу..." class="style-input">
+                <div class="search-wrapper">
+                    <input type="text" id="search-input" placeholder="Поиск..." class="style-input">
+                    <button id="clear-search" class="clear-btn-search">×</button>
+                </div>
             </div>
         </div>
         <div id="category">
@@ -170,7 +173,47 @@
         <div class="card-grid">
             <span id="card-text">
                 <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Приветствие</p></div>
-                <p class="shab-text">123</p>
+                <p class="shab-text">Доброго времени суток!<br>Спасибо за обращение в поддержку CYBERSHOKE.<br><br>Нам потребуется некоторое время, чтобы проверить информацию и разобраться в ситуации.<br>Пожалуйста, ожидайте — мы напишем в чат по итогам проверки.<br></p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Нужны steam-аккаунты</p></div>
+                <p class="shab-text">Для проведения проверки и объективного рассмотрения апелляции вам необходимо предоставить<br>ссылки на все Steam аккаунты, использованные вами когда-либо, включая аккаунты, используемые<br>в настоящий момент.</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Бан остается</p></div>
+                <p class="shab-text">Мы проверили информацию касательно вашей блокировки.<br><br>По итогам проверки мы не выявили ошибок со стороны модерации, блокировка выдана корректно и остаётся в силе.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Бан снят</p></div>
+                <p class="shab-text">Мы проверили информацию касательно вашей блокировки.<br><br>По итогам проверки нами было принято решение снять блокировку.<br>Приносим извинения за доставленные неудобства и потраченное время.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Давняя блокировка</p></div>
+                <p class="shab-text">Мы проверили информацию касательно вашей блокировки.<br><br>Увы, но давние блокировки мы не снимаем и не апеллируем. Вам остаётся только ожидать окончания блокировки.<br><br>Максимальный срок подачи апелляции для банов за использование запрещённого ПО составляет 7 дней.<br>В случае бана за отказ от проверки на читы у вас есть максимум 4 часа на подачу апелляции.<br>Правила проекта — https://cybershoke.net/ru/learn/181.<br><br>Дата разблокировки - xx.xx.xxxx.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Верная блокировка</p></div>
+                <p class="shab-text">Мы проверили информацию касательно вашей блокировки.<br><br>Мы не снимаем верно выданные баны, блокировка выдана корректно и остаётся в силе,<br>ожидайте окончания блокировки.<br><br>Дата разблокировки - xx.xx.xxxx.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
             </span>
             <button class="c-btn">Копировать</button>
             <button class="o-btn">Отступ</button>
@@ -179,6 +222,30 @@
         </div>
 
         <div id="card-page3" class="shab-page">
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Игрок наказан</p></div>
+                <p class="shab-text">Мы ознакомились с прикрепленными вами доказательствами нарушений.<br><br>По итогам проверки в отношении игрока была применена блокировка:<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">У игрока нет нарушений</p></div>
+                <p class="shab-text">По итогам проверки мы не выявили никаких нарушений со стороны игрока.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
+        <div class="card-grid">
+            <span id="card-text">
+                <div id="shab-name-text"><div id="flag"></div><p class="shab-name">Нет доказательств</p></div>
+                <p class="shab-text">Для рассмотрения жалоб, поданных через Discord, обязательным условием является наличие<br>доказательств нарушения. В качестве доказательств принимаются видеозаписи, скриншоты<br>или иные материалы, позволяющие однозначно установить факт нарушения правил проекта.<br>Загрузить доказательства можно на сервис https://dropmefiles.com/ и отправить ссылку в данный чат на загруженный файл.<br><br>В случае, если доказательства отсутствуют, мы, к сожалению, не можем рассмотреть жалобу и<br>принять какие-либо меры в рамках обращения через Discord.<br>Если у вас нет возможности записывать игровой процесс или фиксировать нарушения, рекомендуем<br>подавать жалобу непосредственно с сервера с помощью команд !ticket или !report.<br>В таком случае модератор сможет подключиться к серверу в режиме реального времени, проверить ситуацию и,<br>при подтверждении нарушения, оперативно принять необходимые меры в отношении игрока.<br><br>Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.<br>Всего доброго!</p>
+            </span>
+            <button class="c-btn">Копировать</button>
+            <button class="o-btn">Отступ</button>
+        </div>
         <div class="card-grid">
             <span id="card-text">
                 <div id="shab-name-text"><div id="flag"></div><p class="shab-name">123</p></div>
@@ -214,15 +281,13 @@
             <textarea id="constructor-area" class="style-textarea" placeholder="Текст появится здесь..."></textarea>
             
             <div class="constructor-buttons">
-                <button class="add-btn" data-text="Приветствую!">Приветствие</button>
-                <button class="add-btn" data-text="Ваша жалоба принята.">Давний бан</button>
-                <button class="add-btn" data-text="Всего доброго!">Верный бан</button>
-                <button class="add-btn" data-text="Всего доброго!">Сняли бан</button>
-                <button class="add-btn" data-text="Всего доброго!">Бан остается</button>
-                <button class="add-btn" data-text="Всего доброго!">Steam-ссылки</button>
-                <button class="add-btn" data-text="Всего доброго!">Прощание</button>
-                <button class="add-btn" data-text="Всего доброго!">Прощание</button>
-                <button class="add-btn" data-text="Всего доброго!">Прощание</button>
+                <button class="add-btn" data-text="Доброго времени суток!&#10;Спасибо за обращение в поддержку CYBERSHOKE.&#10;&#10;Нам потребуется некоторое время, чтобы проверить информацию и разобраться в ситуации.&#10;Пожалуйста, ожидайте — мы напишем в чат по итогам проверки.&#10;">Приветствие</button>
+                <button class="add-btn" data-text="Мы проверили информацию касательно вашей блокировки.&#10;&#10;Увы, но давние блокировки мы не снимаем и не апеллируем. Вам остаётся только ожидать окончания блокировки.&#10;&#10;Максимальный срок подачи апелляции для банов за использование запрещённого ПО составляет 7 дней.&#10;В случае бана за отказ от проверки на читы у вас есть максимум 4 часа на подачу апелляции.&#10;Правила проекта — https://cybershoke.net/ru/learn/181.&#10;&#10;Дата разблокировки - xx.xx.xxxx.&#10;&#10;Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.&#10;Всего доброго!&#10;">Давний бан</button>
+                <button class="add-btn" data-text="Мы проверили информацию касательно вашей блокировки.&#10;&#10;Мы не снимаем верно выданные баны, блокировка выдана корректно и остаётся в силе,&#10;ожидайте окончания блокировки.&#10;&#10;Дата разблокировки - xx.xx.xxxx.&#10;&#10;Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.&#10;Всего доброго!&#10;">Верный бан</button>
+                <button class="add-btn" data-text="Мы проверили информацию касательно вашей блокировки.&#10;&#10;По итогам проверки нами было принято решение снять блокировку.&#10;Приносим извинения за доставленные неудобства и потраченное время.&#10;&#10;Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.&#10;Всего доброго!&#10;">Сняли бан</button>
+                <button class="add-btn" data-text="Для проведения проверки и объективного рассмотрения апелляции вам необходимо предоставить&#10;ссылки на все Steam аккаунты, использованные вами когда-либо, включая аккаунты, используемые&#10;в настоящий момент.&#10;">Бан остается</button>
+                <button class="add-btn" data-text="Если у вас не осталось вопросов, пожалуйста, закройте обращение самостоятельно через кнопку или оно будет закрыто автоматически.&#10;Всего доброго!&#10;">Steam-ссылки</button>
+                <button class="add-btn" data-text="">...</button>
             </div>
 
             <div class="control-group">
