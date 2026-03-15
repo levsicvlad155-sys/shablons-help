@@ -578,11 +578,10 @@ a {
 .add-btn {
     width: 143px;
     height: 30px;
-    background: transparent;
-    border: none;
-    border: 2px solid #0039A6;
+    background-color: transparent;
+    color: #6993FF;
+    border: 1px solid #6993FF;
     border-radius: 10px;
-    color: #0039A6;
     font-family: 'DIN Pro', sans-serif;
     font-weight: 600;
     justify-content: center;
