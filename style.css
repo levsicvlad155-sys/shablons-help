@@ -695,12 +695,10 @@ a {
     width: 27px;
     height: 27px;
 }
-
 .flex-btn:hover {
     background: #23232d;
     color: white;
 }
-
 #tabs-container {
     display: flex;
     align-items: center;
@@ -708,10 +706,7 @@ a {
     height: 100%;
     flex-grow: 1;
 }
-
 #tabs-container::-webkit-scrollbar { display: none; }
-
-
 .tab {
     display: flex;
     align-items: center;

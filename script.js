@@ -216,7 +216,16 @@ function updateConstructor(text, isNewBlock = true) {
     }
     
     localStorage.setItem('constructor_text', textArea.value);
+    
     textArea.scrollTop = textArea.scrollHeight;
+
+    showToast("copy");
+
+    navigator.clipboard.writeText(textArea.value).then(() => {
+        console.log("Текст обновлен и скопирован");
+    }).catch(err => {
+        console.error("Ошибка автокопирования: ", err);
+    });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
