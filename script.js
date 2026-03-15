@@ -320,5 +320,198 @@ if (searchInput) {
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const tabsContainer = document.getElementById('tabs-container');
+    const closeAllBtn = document.getElementById('close-all-tabs');
+    const menuButtons = document.querySelectorAll('.menu-btn');
+    const pages = document.querySelectorAll('.page');
+    const STORAGE_KEY = 'layout_tabs_config';
+
+    // 1. ФУНКЦИИ СОХРАНЕНИЯ И ЗАГРУЗКИ (теперь внутри, чтобы видеть переменные)
+    function saveTabsState() {
+        const tabs = [...tabsContainer.querySelectorAll('.tab')].map(tab => ({
+            id: tab.dataset.target,
+            title: tab.querySelector('span').textContent,
+            isClosable: !!tab.querySelector('.tab-close')
+        }));
+
+        const activeTab = document.querySelector('.tab.active');
+        const activeTabId = activeTab ? activeTab.dataset.target : null;
+
+        const state = { tabs, activeTabId };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function loadTabsState() {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+        if (!savedData) {
+            // Если памяти нет — инициализируем дефолтную вкладку
+            createTab('page1', 'Шаблоны RU', false);
+            switchTab('page1');
+            return;
+        }
+
+        try {
+            const { tabs, activeTabId } = JSON.parse(savedData);
+            tabsContainer.innerHTML = ''; // Очистка
+            
+            tabs.forEach(t => {
+                createTab(t.id, t.title, t.isClosable);
+            });
+
+            if (activeTabId) switchTab(activeTabId);
+        } catch (e) {
+            console.error("Ошибка загрузки:", e);
+            createTab('page1', 'Шаблоны RU', false);
+        }
+    }
+
+    // 2. ИНИЦИАЛИЗАЦИЯ (Загружаем сохраненное вместо жесткого кода)
+    loadTabsState();
+
+    // Перехватываем клики по меню в сайдбаре
+    menuButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const pageId = btn.getAttribute('href').replace('#', '');
+            const title = btn.querySelector('.textt1').textContent;
+
+            const existingTabs = [...tabsContainer.querySelectorAll('.tab')].map(t => t.dataset.target);
+            
+            if (!existingTabs.includes(pageId)) {
+                createTab(pageId, title, true);
+            }
+            switchTab(pageId);
+            saveTabsState(); // Сохраняем после добавления
+        });
+    });
+
+    function createTab(pageId, title, isClosable) {
+        const tab = document.createElement('div');
+        tab.classList.add('tab');
+        tab.dataset.target = pageId;
+
+        const span = document.createElement('span');
+        span.textContent = title;
+        tab.appendChild(span);
+
+        if (isClosable) {
+            const closeBtn = document.createElement('button');
+            closeBtn.classList.add('tab-close');
+            closeBtn.innerHTML = '×';
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); 
+                closeTab(pageId);
+            });
+            tab.appendChild(closeBtn);
+        }
+
+        tabsContainer.appendChild(tab);
+
+        // Логика перемещения
+        let isDragging = false;
+        let startX, startLeft, fixedTop, placeholder;
+
+        tab.addEventListener('mousedown', (e) => {
+            if (e.button !== 0 || e.target.classList.contains('tab-close')) return;
+            isDragging = false;
+            startX = e.clientX;
+
+            const onMouseMove = (moveEvent) => {
+                if (!isDragging && Math.abs(moveEvent.clientX - startX) > 3) {
+                    isDragging = true;
+                    const rect = tab.getBoundingClientRect();
+                    startLeft = rect.left;
+                    fixedTop = rect.top;
+
+                    placeholder = document.createElement('div');
+                    placeholder.classList.add('tab-placeholder');
+                    placeholder.style.width = `${rect.width}px`;
+                    placeholder.style.height = `${rect.height}px`;
+                    tabsContainer.insertBefore(placeholder, tab.nextSibling);
+
+                    tab.classList.add('dragging');
+                    tab.style.position = 'fixed';
+                    tab.style.top = `${fixedTop}px`;
+                    tab.style.width = `${rect.width}px`;
+                }
+
+                if (isDragging) {
+                    let newLeft = startLeft + (moveEvent.clientX - startX);
+                    const containerRect = tabsContainer.getBoundingClientRect();
+                    newLeft = Math.max(containerRect.left, Math.min(newLeft, containerRect.right - tab.offsetWidth));
+                    tab.style.left = `${newLeft}px`;
+
+                    const siblings = [...tabsContainer.querySelectorAll('.tab:not(.dragging)')];
+                    const nextSibling = siblings.find(sibling => {
+                        const box = sibling.getBoundingClientRect();
+                        return moveEvent.clientX < box.left + box.width / 2;
+                    });
+
+                    if (nextSibling) tabsContainer.insertBefore(placeholder, nextSibling);
+                    else tabsContainer.appendChild(placeholder);
+                }
+            };
+
+            const onMouseUp = () => {
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+
+                if (isDragging) {
+                    tab.classList.remove('dragging');
+                    tab.style.cssText = ''; 
+                    tabsContainer.insertBefore(tab, placeholder);
+                    placeholder.remove();
+                    saveTabsState(); // СОХРАНЯЕМ ПОРЯДОК после перетаскивания
+                } else {
+                    switchTab(pageId);
+                }
+            };
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        });
+    }
+
+    function switchTab(pageId) {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        pages.forEach(p => p.classList.remove('active'));
+
+        const activeTab = document.querySelector(`.tab[data-target="${pageId}"]`);
+        if (activeTab) activeTab.classList.add('active');
+        
+        const activePage = document.getElementById(pageId);
+        if (activePage) activePage.classList.add('active');
+        
+        saveTabsState(); // Сохраняем, какая вкладка активна
+    }
+
+    function closeTab(pageId) {
+        if (pageId === 'page1') return;
+        const tabToRemove = document.querySelector(`.tab[data-target="${pageId}"]`);
+        if (tabToRemove) {
+            if (tabToRemove.classList.contains('active')) {
+                const remainingTabs = [...tabsContainer.querySelectorAll('.tab')];
+                const index = remainingTabs.indexOf(tabToRemove);
+                const nextTab = remainingTabs[index - 1] || remainingTabs[index + 1];
+                switchTab(nextTab ? nextTab.dataset.target : 'page1');
+            }
+            tabToRemove.remove();
+            saveTabsState(); // Сохраняем после закрытия
+        }
+    }
+
+    closeAllBtn.addEventListener('click', () => {
+        [...tabsContainer.querySelectorAll('.tab')].forEach(t => {
+            if (t.dataset.target !== 'page1') t.remove();
+        });
+        switchTab('page1');
+        saveTabsState(); // Сохраняем после очистки всех вкладок
+    });
+});
+
+
+
+
 
 
