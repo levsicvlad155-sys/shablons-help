@@ -267,7 +267,7 @@ a {
     color: #afb3ce;
     font-size: 12px;
     font-weight: 600;
-    opacity: 80%;
+    opacity: 60%;
 }
 #main-page {
     display: flex;
@@ -531,6 +531,7 @@ a {
     position: relative;
     color: #d5d9f3;
     height: 400px;
+    max-height: 600px;
     margin: 20px 20px 0 20px;
     background-color: #1e1e26;
     border: none;
@@ -568,23 +569,31 @@ a {
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
-    background: transparent;
+    background-color: #1e1e26;
+    filter: brightness(1.1);
     align-items: center;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
     gap: 10px;
+    border-radius: 10px;
+    padding: 10px;
 }
 .add-btn {
-    width: 143px;
-    height: 30px;
+    width: 150px;
+    height: 25px;
     background-color: transparent;
     color: #6993FF;
-    border: 1px solid #6993FF;
+    border: 2px solid #6993FF;
     border-radius: 10px;
     font-family: 'DIN Pro', sans-serif;
     font-weight: 600;
     justify-content: center;
+    flex-grow: 1;
+}
+.add-btn:hover {
+    border: 2px solid #00195a;
+    color: #d5d9f3;
 }
 .control-group {
     display: flex;
@@ -744,10 +753,95 @@ a {
     transition: all 0.1s;
     margin-left: auto;
 }
-
 .tab-close:hover {
     background: #ff4747;
     color: white;
+}
+.date-input-container {
+    display: flex;
+    gap: 10px;
+}
+#manual-date {
+    background: #1e1e26;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-family: 'DIN Pro', sans-serif;
+}
+#set-date-btn {
+    background: #6080ff;
+    color: white;
+    border: none;
+    padding: 9px 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.15s;
+    font-family: 'DIN Pro', sans-serif;
+}
+#set-date-btn:hover {
+    background: #23232d !important;
+    color: #6080ff;
+}
+#convert-to-data-text {
+    background: gray;  
+}
+#convert-to-data-text:hover {
+    background: #1d1d25;
+}
+.slots-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background: transparent;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.custom-slot {
+    display: flex;
+    position: relative;
+    background: blue;
+    border: none;
+    border-style: none;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DIN Pro', sans-serif;
+    transition: 0.15s;
+    cursor: pointer;
+    font-size: 13px;
+}
+.custom-slot:hover {
+    background: #23232d;
+    color: #6080ff;
+}
+#add-new-slot {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.slot-delete {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 12px;
+    cursor: pointer;
+    display: none;
+}
+
+.custom-slot:hover .slot-delete {
+    display: block;
 }
 
 

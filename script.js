@@ -165,7 +165,7 @@ function showToast(message) {
 
     setTimeout(() => {
         toast.remove();
-    }, 1500);
+    }, 500);
 }
 
 
@@ -230,15 +230,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
 document.querySelectorAll('.add-btn').forEach(button => {
     button.addEventListener('click', () => {
-        const textToAdd = button.getAttribute('data-text');
+        let textToAdd = button.getAttribute('data-text');
         
-        // 1. Добавляем текст в конструктор (как и было)
+        // --- ЛОГИКА ЗАМЕНЫ ДАТЫ ---
+        if (currentManualDate !== "") {
+            // Ищем xx.xx.xxxx и заменяем на нашу дату
+            textToAdd = textToAdd.replace(/xx\.xx\.xxxx/g, currentManualDate);
+        }
+        
+        // 1. Добавляем уже обработанный текст в конструктор
         updateConstructor(textToAdd);
         
-        // 2. Копируем в буфер ТОЛЬКО этот фрагмент
+        // 2. Копируем в буфер только этот обработанный фрагмент
         navigator.clipboard.writeText(textToAdd).then(() => {
-            // Можно вызвать тост, чтобы пользователь видел, что именно скопировано
-            showToast("мразь");
+            // Твое уведомление :)
+            showToast("Успешно"); 
         }).catch(err => {
             console.error("Ошибка копирования фрагмента: ", err);
         });
@@ -522,7 +528,115 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Переменная для хранения даты (по умолчанию пустая)
+let currentManualDate = "";
+
+// Слушатель для кнопки "ОК" возле поля даты
+document.addEventListener('DOMContentLoaded', () => {
+    const setDateBtn = document.getElementById('set-date-btn');
+    const dateInput = document.getElementById('manual-date');
+
+    if (setDateBtn && dateInput) {
+        // Устанавливаем текущую дату по умолчанию
+        const today = new Date().toLocaleDateString('ru-RU');
+        dateInput.value = today;
+        currentManualDate = today;
+
+        setDateBtn.addEventListener('click', () => {
+            currentManualDate = dateInput.value.trim();
+            showToast(currentManualDate ? "Дата установлена" : "Дата пустая");
+        });
+    }
+});
+
+
+document.getElementById('convert-to-data-text').addEventListener('click', () => {
+    const rawText = textArea.value; // Берем текст из твоего конструктора
+    
+    if (!rawText) {
+        showToast("Пусто!");
+        return;
+    }
+
+    // Заменяем все обычные переносы строк на &#10;
+    // А также заменяем двойные кавычки на &quot;, чтобы не сломать HTML-атрибут
+    const escapedText = rawText
+        .replace(/\n/g, '&#10;')
+        .replace(/"/g, '&quot;');
+
+    // Копируем результат в буфер обмена
+    navigator.clipboard.writeText(escapedText).then(() => {
+        showToast("Готово!");
+        
+        // Опционально: выводим результат в консоль, чтобы можно было скопировать оттуда
+        console.log('Твой data-text:');
+        console.log(`data-text="${escapedText}"`);
+    });
+});
 
 
 
+const slotsWrapper = document.getElementById('slots-wrapper');
+const addSlotBtn = document.getElementById('add-new-slot');
+const STORAGE_SLOTS_KEY = 'user_custom_slots';
+
+// 1. Загрузка слотов при старте
+let userSlots = JSON.parse(localStorage.getItem(STORAGE_SLOTS_KEY)) || [];
+
+function renderSlots() {
+    slotsWrapper.innerHTML = '';
+    userSlots.forEach((slot, index) => {
+        const slotEl = document.createElement('div');
+        slotEl.className = 'custom-slot';
+        slotEl.innerHTML = `
+            <span>${slot.name}</span>
+            <button class="slot-delete" onclick="deleteSlot(${index}, event)">×</button>
+        `;
+        
+        // Клик по кнопке — копируем текст
+        slotEl.addEventListener('click', () => {
+            if (slot.text) {
+                updateConstructor(slot.text); // Добавляем в твой конструктор
+                navigator.clipboard.writeText(slot.text);
+                showToast(`Слот "${slot.name}" скопирован!`);
+            } else {
+                showToast("Слот пустой!");
+            }
+        });
+        
+        slotsWrapper.appendChild(slotEl);
+    });
+
+    // Ограничение на 10 кнопок
+    addSlotBtn.style.display = userSlots.length >= 10 ? 'none' : 'block';
+}
+
+// 2. Добавление нового слота
+addSlotBtn.addEventListener('click', () => {
+    const name = prompt("Введите название кнопки:");
+    if (!name) return;
+
+    const text = prompt(`Вставьте текст шаблона для кнопки "${name}":`);
+    if (text === null) return; // Если нажали "Отмена"
+
+    userSlots.push({ name, text });
+    saveAndRender();
+});
+
+// 3. Удаление слота
+window.deleteSlot = function(index, event) {
+    event.stopPropagation(); // Чтобы не сработал клик по самой кнопке
+    if (confirm("Удалить этот слот?")) {
+        userSlots.splice(index, 1);
+        saveAndRender();
+    }
+};
+
+function saveAndRender() {
+    localStorage.setItem(STORAGE_SLOTS_KEY, JSON.stringify(userSlots));
+    renderSlots();
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', renderSlots);
 
