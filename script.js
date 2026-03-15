@@ -216,16 +216,8 @@ function updateConstructor(text, isNewBlock = true) {
     }
     
     localStorage.setItem('constructor_text', textArea.value);
-    
     textArea.scrollTop = textArea.scrollHeight;
-
-    showToast("copy");
-
-    navigator.clipboard.writeText(textArea.value).then(() => {
-        console.log("Текст обновлен и скопирован");
-    }).catch(err => {
-        console.error("Ошибка автокопирования: ", err);
-    });
+    // Здесь больше НЕТ navigator.clipboard
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -239,7 +231,17 @@ window.addEventListener('DOMContentLoaded', () => {
 document.querySelectorAll('.add-btn').forEach(button => {
     button.addEventListener('click', () => {
         const textToAdd = button.getAttribute('data-text');
+        
+        // 1. Добавляем текст в конструктор (как и было)
         updateConstructor(textToAdd);
+        
+        // 2. Копируем в буфер ТОЛЬКО этот фрагмент
+        navigator.clipboard.writeText(textToAdd).then(() => {
+            // Можно вызвать тост, чтобы пользователь видел, что именно скопировано
+            showToast("мразь");
+        }).catch(err => {
+            console.error("Ошибка копирования фрагмента: ", err);
+        });
     });
 });
 
