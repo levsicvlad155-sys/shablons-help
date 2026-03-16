@@ -522,7 +522,7 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background: #2b2b36;
+    background: linear-gradient(#2b2b36, #222229 85%);
     flex-grow: 1;
     gap: 20px;
 }
@@ -531,7 +531,7 @@ a {
     position: relative;
     color: #d5d9f3;
     height: 400px;
-    max-height: 600px;
+    max-height: 550px;
     margin: 20px 20px 0 20px;
     background-color: #1e1e26;
     border: none;
@@ -569,7 +569,6 @@ a {
     margin-left: 20px;
     margin-right: 20px;
     width: auto;
-    background-color: #1e1e26;
     filter: brightness(1.1);
     align-items: center;
     flex-wrap: wrap;
@@ -580,7 +579,7 @@ a {
     padding: 10px;
 }
 .add-btn {
-    width: 150px;
+    width: 120px;
     height: 25px;
     background-color: transparent;
     color: #6993FF;
@@ -592,8 +591,7 @@ a {
     flex-grow: 1;
 }
 .add-btn:hover {
-    border: 2px solid #00195a;
-    color: #d5d9f3;
+    border: 3px solid #00195a;
 }
 .control-group {
     display: flex;
@@ -843,6 +841,9 @@ a {
 .custom-slot:hover .slot-delete {
     display: block;
 }
+
+
+
 
 
 

@@ -640,3 +640,32 @@ function saveAndRender() {
 // Инициализация
 document.addEventListener('DOMContentLoaded', renderSlots);
 
+
+
+
+function wrapText(symbol) {
+    const area = document.getElementById('constructor-area'); // Твой textarea
+    const start = area.selectionStart; // Начало выделения
+    const end = area.selectionEnd;     // Конец выделения
+    
+    const fullText = area.value;
+    const selectedText = fullText.substring(start, end);
+    
+    if (start === end) {
+        // Если ничего не выделено, просто вставляем символы в место курсора
+        const newText = fullText.substring(0, start) + symbol + symbol + fullText.substring(end);
+        area.value = newText;
+        // Ставим курсор между символами
+        area.setSelectionRange(start + symbol.length, start + symbol.length);
+    } else {
+        // Оборачиваем выделенный кусок
+        const newText = fullText.substring(0, start) + symbol + selectedText + symbol + fullText.substring(end);
+        area.value = newText;
+        // Возвращаем выделение на место, но уже с символами
+        area.setSelectionRange(start, end + (symbol.length * 2));
+    }
+    
+    area.focus(); // Возвращаем фокус на поле
+}
+
+
