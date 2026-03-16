@@ -404,26 +404,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function createTab(pageId, title, isClosable) {
-        const tab = document.createElement('div');
-        tab.classList.add('tab');
-        tab.dataset.target = pageId;
+    const tab = document.createElement('div');
+    // Добавляем сразу два класса: основной и для анимации появления
+    tab.classList.add('tab', 'tab-new'); 
+    tab.dataset.target = pageId;
 
-        const span = document.createElement('span');
-        span.textContent = title;
-        tab.appendChild(span);
+    const span = document.createElement('span');
+    span.textContent = title;
+    tab.appendChild(span);
 
-        if (isClosable) {
-            const closeBtn = document.createElement('button');
-            closeBtn.classList.add('tab-close');
-            closeBtn.innerHTML = '×';
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); 
-                closeTab(pageId);
-            });
-            tab.appendChild(closeBtn);
-        }
+    if (isClosable) {
+        const closeBtn = document.createElement('button');
+        closeBtn.classList.add('tab-close');
+        closeBtn.innerHTML = '×';
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            closeTab(pageId);
+        });
+        tab.appendChild(closeBtn);
+    }
 
-        tabsContainer.appendChild(tab);
+    tabsContainer.appendChild(tab);
+
+    // ВАЖНО: Удаляем класс анимации через 250мс (длительность в CSS)
+    // Это позволит перетаскивать вкладку без повторного срабатывания анимации
+    setTimeout(() => {
+        tab.classList.remove('tab-new');
+    }, 250);
 
         // Логика перемещения
         let isDragging = false;
@@ -471,37 +478,64 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const onMouseUp = () => {
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
 
-                if (isDragging) {
-                    tab.classList.remove('dragging');
-                    tab.style.cssText = ''; 
-                    tabsContainer.insertBefore(tab, placeholder);
-                    placeholder.remove();
-                    saveTabsState(); // СОХРАНЯЕМ ПОРЯДОК после перетаскивания
-                } else {
-                    switchTab(pageId);
-                }
-            };
+    if (isDragging) {
+        // 1. Находим координаты нашего плейсхолдера
+        const rect = placeholder.getBoundingClientRect();
+        
+        // 2. Накидываем плавность прямо в style и отправляем вкладку на место
+        tab.style.transition = 'left 0.15s ease-out, top 0.15s ease-out';
+        tab.style.left = `${rect.left}px`;
+        tab.style.top = `${rect.top}px`;
+
+        // 3. Ждем 150мс (пока закончится анимация), затем вшиваем в DOM
+        setTimeout(() => {
+            tab.classList.remove('dragging');
+            tab.style.cssText = ''; // Сбрасываем инлайновые стили
+            tabsContainer.insertBefore(tab, placeholder);
+            placeholder.remove();
+            saveTabsState();
+        }, 150);
+        
+    } else {
+        switchTab(pageId);
+    }
+};
 
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
         });
     }
 
-    function switchTab(pageId) {
-        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        pages.forEach(p => p.classList.remove('active'));
+function switchTab(pageId) {
+    // 1. Снимаем active со вкладок и страниц
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    pages.forEach(p => p.classList.remove('active'));
+    
+    // 2. Снимаем active со всех кнопок бокового меню (важно!)
+    document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
 
-        const activeTab = document.querySelector(`.tab[data-target="${pageId}"]`);
-        if (activeTab) activeTab.classList.add('active');
-        
-        const activePage = document.getElementById(pageId);
-        if (activePage) activePage.classList.add('active');
-        
-        saveTabsState(); // Сохраняем, какая вкладка активна
+    // 3. Активируем нужную вкладку
+    const activeTab = document.querySelector(`.tab[data-target="${pageId}"]`);
+    if (activeTab) activeTab.classList.add('active');
+    
+    // 4. Активируем саму страницу
+    const activePage = document.getElementById(pageId);
+    if (activePage) activePage.classList.add('active');
+    
+    // 5. СИНХРОНИЗАЦИЯ: подсвечиваем кнопку в меню и перезаписываем старый localStorage
+    // Ищем кнопку по href="#pageId" (или без решетки, в зависимости от твоей верстки)
+    const targetMenuBtn = document.querySelector(`.menu-btn[href="#${pageId}"]`) || document.querySelector(`.menu-btn[href="${pageId}"]`);
+    if (targetMenuBtn) {
+        targetMenuBtn.classList.add('active');
+        localStorage.setItem('activePage', targetMenuBtn.getAttribute('href'));
     }
+    
+    // 6. Сохраняем состояние конфигурации табов
+    saveTabsState(); 
+}
 
     function closeTab(pageId) {
         if (pageId === 'page1') return;
