@@ -703,46 +703,36 @@ function wrapText(symbol) {
 }
 
 async function fetchLastUpdate() {
-    // Твой ник на GitHub
-    const username = 'levsicvlad155-sys'; 
-    // Замени 'название-репозитория' на реальное имя твоего проекта на гитхабе
-    const repo = 'cybershoke/help'; 
+    const dateElement = document.getElementById('update-date');
     
+    // Автоматически берем ник и репо из текущего URL страницы
+    const pathParts = window.location.pathname.split('/');
+    const repo = pathParts[1] || 'название-репозитория'; 
+    const username = 'levsicvlad155-sys';
+
     try {
         const response = await fetch(`https://api.github.com/repos/${username}/${repo}/commits?per_page=1`);
         
-        if (!response.ok) {
-            throw new Error('Репозиторий не найден или приватный');
-        }
+        if (!response.ok) throw new Error('Ошибка API');
 
         const data = await response.json();
-
         if (data && data.length > 0) {
             const commitDate = new Date(data[0].commit.committer.date);
-            
-            // Формат даты: ДД.ММ.ГГГГ
-            const options = { 
-                day: '2-digit', 
-                month: '2-digit', 
-                year: 'numeric' 
-            };
-            
-            const formattedDate = commitDate.toLocaleDateString('ru-RU', options);
-            
-            const dateElement = document.getElementById('update-date');
-            if (dateElement) {
-                dateElement.textContent = `Обновлено: ${formattedDate}`;
-            }
+            const formattedDate = commitDate.toLocaleDateString('ru-RU', {
+                day: '2-digit', month: '2-digit', year: 'numeric'
+            });
+            dateElement.textContent = `Обновлено: ${formattedDate}`;
         }
     } catch (error) {
-        console.error('Ошибка при получении даты:', error);
-        // Если ошибка, можно просто скрыть текст
-        const dateElement = document.getElementById('update-date');
-        if (dateElement) dateElement.style.display = 'none';
+        // Если API не сработало, используем системную дату файла
+        const lastMod = new Date(document.lastModified);
+        if (lastMod) {
+            dateElement.textContent = `Обновлено: ${lastMod.toLocaleDateString('ru-RU')}`;
+        } else {
+            dateElement.style.display = 'none';
+        }
     }
 }
-
-// Запускаем при загрузке страницы
 document.addEventListener('DOMContentLoaded', fetchLastUpdate);
 
 
