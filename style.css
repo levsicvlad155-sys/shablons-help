@@ -899,6 +899,10 @@ a {
         min-width: 180px;
     }
 }
+.tab-placeholder {
+  flex-shrink: 0;
+  transition: width 0.2s ease;
+}
 
 
 
