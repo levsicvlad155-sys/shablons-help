@@ -914,6 +914,34 @@ a {
     text-transform: uppercase;
     font-size: 10px;
 }
+.tab-preview {
+    position: fixed;
+    width: 250px; 
+    height: 150px;
+    background: #181818;
+    border-radius: 6px;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity 0.2s ease;
+}
+.tab-preview.visible {
+    opacity: 1;
+}
+.preview-content {
+    width: 1250px;
+    transform: scale(0.2);
+    transform-origin: top left;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+.preview-content .page {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
 
 
 
