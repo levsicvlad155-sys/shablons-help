@@ -1,5 +1,5 @@
 :root {
-    --bg-gradient: linear-gradient(135deg, #1c1c1e 0%, #000000 100%);
+    --bg-gradient: linear-gradient(#1c1c1e, #000000 30%);
     --text-color: #f5f5f7;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
@@ -48,7 +48,6 @@ body {
     background: var(--glass-bg);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid var(--glass-border);
     z-index: 10;
 }
 
@@ -137,10 +136,14 @@ body {
     border-radius: 10px;
 }
 
+.templates-container::-webkit-scrollbar-thumb:hover {
+    background: var(--blue-title);
+}
+
 .template-card {
     display: flex;
     flex-direction: row;
-    width: 98%;
+    width: 100%;
     background: var(--glass-bg);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -151,6 +154,10 @@ body {
     animation: slideUpFade 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
     transform: translateY(-20px);
+}
+
+.template-card:hover {
+    filter: brightness(1.4);
 }
 
 @keyframes slideUpFade {
@@ -167,7 +174,7 @@ body {
 
 .card-title {
     color: var(--blue-title);
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 600;
     margin-bottom: 12px;
     letter-spacing: -0.3px;
@@ -189,7 +196,7 @@ body {
 }
 
 .constructor-textarea {
-    flex-grow: 1;
+    height: 60%;
     width: 100%;
     background: var(--glass-bg);
     backdrop-filter: blur(24px);
@@ -328,4 +335,24 @@ body {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
+}
+
+.snippet-btn {
+    color: var(--blue-title);
+    border: 1px solid var(--blue-title);
+}
+
+.copy-full-btn {
+    color: greenyellow;
+    border: 1px solid greenyellow;
+}
+
+.indent-btn {
+    color: orchid;
+    border: 1px solid orchid;
+}
+
+.clear-textarea-btn {
+    color: chocolate;
+    border: 1px solid chocolate;
 }
