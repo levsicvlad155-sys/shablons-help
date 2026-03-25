@@ -366,3 +366,40 @@ body {
 .card-copy-space-btn {
     border: 1px solid greenyellow;
 }
+
+.templates-container.grid-view {
+    column-count: 2;
+    column-gap: 16px;
+    display: block;
+    padding: 0;
+}
+
+.templates-container.grid-view .template-card {
+    break-inside: avoid; 
+    margin-bottom: 16px; 
+    display: block;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.templates-container.grid-view .template-card:last-child {
+    margin-bottom: 0;
+}
+
+.templates-container.grid-view .template-card .card-content-wrapper {
+    flex-grow: 1;
+}
+
+.templates-container.grid-view .template-card .card-text {
+    display: block;
+    overflow: visible;
+    text-overflow: clip;
+    word-wrap: break-word;
+}
+
+.templates-container.grid-view .template-card .card-actions-wrapper {
+    margin-top: auto;
+    padding-top: 10px;
+}
+

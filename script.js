@@ -109,6 +109,10 @@ function renderTemplates() {
         cardsDiv.classList.add('templates-container');
         container.appendChild(cardsDiv);
 
+        if (localStorage.getItem('gridLayout') === 'true') {
+    cardsDiv.classList.add('grid-view');
+}
+
         const filtered = allTemplates.filter(t => t.category === activeFilter);
         filtered.forEach((tpl, i) => {
             const card = document.createElement('div');
@@ -273,6 +277,29 @@ function renderSettings() {
     
     themeCard.append(themeTitle, themeToggle);
 
+    const layoutCard = document.createElement('div');
+layoutCard.classList.add('settings-card', 'layout-card');
+
+const layoutTitle = document.createElement('h3');
+layoutTitle.classList.add('settings-card-title');
+layoutTitle.textContent = 'Отображение сеткой (Grid)';
+
+const layoutToggle = document.createElement('div');
+layoutToggle.classList.add('theme-toggle-circle');
+
+// Читаем настройку из localStorage
+if (localStorage.getItem('gridLayout') === 'true') {
+    layoutToggle.classList.add('active');
+}
+
+layoutToggle.onclick = () => {
+    layoutToggle.classList.toggle('active');
+    const isActive = layoutToggle.classList.contains('active');
+    localStorage.setItem('gridLayout', isActive ? 'true' : 'false');
+};
+
+layoutCard.append(layoutTitle, layoutToggle);
+
     const clearCard = document.createElement('div');
     clearCard.classList.add('settings-card', 'clear-card');
     
@@ -290,7 +317,7 @@ function renderSettings() {
     };
     
     clearCard.append(clearTitle, clearBtn);
-    container.append(themeCard, clearCard);
+    container.append(themeCard, clearCard, layoutCard);
     main.appendChild(container);
 }
 
