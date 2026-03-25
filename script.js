@@ -114,6 +114,13 @@ function renderTemplates() {
             const card = document.createElement('div');
             card.classList.add('template-card');
             
+            card.onclick = (event) => {
+                if (event.target.closest('.card-actions-wrapper')) {
+                    return;
+                }
+                navigator.clipboard.writeText(tpl.text);
+            };
+            
             const contentDiv = document.createElement('div');
             contentDiv.classList.add('card-content-wrapper');
             
