@@ -156,10 +156,6 @@ body {
     transform: translateY(-20px);
 }
 
-.template-card:hover {
-    filter: brightness(1.4);
-}
-
 @keyframes slideUpFade {
     to { opacity: 1; transform: translateY(0); }
 }
@@ -355,4 +351,18 @@ body {
 .clear-textarea-btn {
     color: chocolate;
     border: 1px solid chocolate;
+}
+
+.card-copy-btn, .card-copy-space-btn {
+    display: flex;
+    justify-content: center;
+    margin-left: 70px;
+}
+
+.card-copy-btn {
+    border: 1px solid var(--blue-title);
+}
+
+.card-copy-space-btn {
+    border: 1px solid greenyellow;
 }
